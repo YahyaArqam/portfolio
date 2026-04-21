@@ -110,7 +110,6 @@ export default function App() {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-x-hidden pt-20">
-        {/* Main Content Container */}
         <div className="flex-1 flex flex-col items-center justify-center max-w-4xl mx-auto text-center space-y-6 relative z-10">
           
           {/* Availability Badge */}
@@ -134,8 +133,9 @@ export default function App() {
             transition={{ delay: 0.1 }}
             className="space-y-3"
           >
+            {/* FIXED: Added pb-4 and changed leading-tight to leading-normal to prevent clipping */}
             <motion.h1
-              className="text-5xl md:text-7xl font-black tracking-tight"
+              className="text-5xl md:text-7xl font-black tracking-tight pb-4 leading-normal"
               style={{
                 background: "linear-gradient(90deg, #00D1C1, #8B5CF6, #00D1C1)",
                 backgroundSize: "200% auto",
@@ -194,7 +194,7 @@ export default function App() {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator - FIXED: Positioned outside the main flex container to prevent overlap */}
+        {/* Scroll Indicator */}
         <div className="h-24 flex items-center justify-center w-full relative z-10">
           <motion.div
             animate={{ y: [0, 10, 0] }}
@@ -228,7 +228,6 @@ export default function App() {
             viewport={{ once: true }}
             className="rounded-xl border border-white/10 bg-black/50 overflow-hidden shadow-2xl"
           >
-            {/* Terminal Bar */}
             <div className="flex items-center justify-between px-4 py-3 bg-white/5 border-b border-white/10">
               <div className="flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
@@ -239,11 +238,10 @@ export default function App() {
               <div className="w-12" />
             </div>
 
-            {/* Terminal Content */}
             <div className="p-8 font-mono text-sm sm:text-base text-gray-300 space-y-6">
               <div className="space-y-2">
                 <div className="flex gap-2">
-                  <span className="text-[#00D1C1]">➜</span>
+                  <span className="text-[#00D1C1]"></span>
                   <span className="text-[#8B5CF6]">~</span>
                   <span className="text-white">whoami</span>
                 </div>
@@ -255,7 +253,7 @@ export default function App() {
 
               <div className="space-y-2">
                 <div className="flex gap-2">
-                  <span className="text-[#00D1C1]">➜</span>
+                  <span className="text-[#00D1C1]"></span>
                   <span className="text-[#8B5CF6]">~</span>
                   <span className="text-white">ls skills/</span>
                 </div>
@@ -268,7 +266,7 @@ export default function App() {
               </div>
 
               <div className="flex items-center gap-2 pt-4">
-                <span className="text-[#00D1C1]">➜</span>
+                <span className="text-[#00D1C1]"></span>
                 <span className="text-[#8B5CF6]">~</span>
                 <motion.span
                   animate={{ opacity: [1, 0] }}
