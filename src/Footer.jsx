@@ -18,11 +18,11 @@ export default function Footer() {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-6">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-6">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
           
           {/* Left - Copyright */}
-          <p className="font-mono text-xs text-[#71717A]">
+          <p className="font-mono text-xs sm:text-xs text-[#71717A] text-center sm:text-left">
             © 2026 Yahya Arqam. All rights reserved.
           </p>
 
@@ -48,7 +48,8 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2 }}
-                className="text-[#71717A] hover:text-white transition"
+                className="text-[#71717A] hover:text-[#00D1C1] transition"
+                aria-label="Social link"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d={icon.path} />
