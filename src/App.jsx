@@ -11,7 +11,6 @@ import TypingAnimation from "./components/TypingAnimation";
 import StatsCounter from "./components/StatsCounter";
 import ProjectFilter from "./components/ProjectFilter";
 
-
 export default function App() {
   const [loading, setLoading] = useState(true);
   const { scrollY } = useScroll();
@@ -36,7 +35,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white">
+    <div className="min-h-screen bg-[#050505] text-white selection:bg-[#00D1C1]/30">
 
       {/* Global Features */}
       <PageProgress />
@@ -54,7 +53,7 @@ export default function App() {
         }}
       />
 
-      {/* Blueprint Background */}
+      {/* Blueprint Background - FULL ORIGINAL SVG DATA */}
       <div
         className="fixed inset-0 pointer-events-none z-0"
         style={{
@@ -68,7 +67,7 @@ export default function App() {
         }}
       />
 
-      {/* Grain */}
+      {/* Grain Effect */}
       <div
         className="fixed inset-0 opacity-[0.025] pointer-events-none z-10"
         style={{
@@ -77,45 +76,44 @@ export default function App() {
       />
 
       {/* Header */}
-<motion.header
-  style={{
-    opacity: headerOpacity,
-    backdropFilter: "blur(12px)",
-  }}
-  className="fixed top-0 w-full z-50 bg-[#050505]/60 border-b border-white/5 transition-colors duration-300"
->
-  <div className="max-w-7xl mx-auto px-6 md:px-12 py-4 flex justify-between items-center">
-    
-    {/* Logo */}
-    <a href="#" className="font-mono text-sm font-medium text-white">
-      yahyaarqam
-    </a>
+      <motion.header
+        style={{
+          opacity: headerOpacity,
+          backdropFilter: "blur(12px)",
+        }}
+        className="fixed top-0 w-full z-50 bg-[#050505]/60 border-b border-white/5 transition-colors duration-300"
+      >
+        <div className="max-w-7xl mx-auto px-6 md:px-12 py-4 flex justify-between items-center">
+          <a href="#" className="font-mono text-sm font-medium text-white hover:text-[#00D1C1] transition-colors">
+            yahyaarqam
+          </a>
 
-    {/* Navigation */}
-    <nav className="hidden md:flex gap-8">
-      {[
-        { label: "About", id: "About" },
-        { label: "Projects", id: "Projects" },
-        { label: "Skills", id: "Skills" },
-        { label: "Contact", id: "Contact" },
-      ].map((item) => (
-        <a
-          key={item.id}
-          href={`#${item.id}`}
-          className="relative text-xs font-medium text-gray-400 hover:text-white transition px-1"
-        >
-          {item.label}
-        </a>
-      ))}
-    </nav>
-  </div>
-</motion.header>
+          <nav className="hidden md:flex gap-8">
+            {[
+              { label: "About", id: "About" },
+              { label: "Projects", id: "Projects" },
+              { label: "Skills", id: "Skills" },
+              { label: "Contact", id: "Contact" },
+            ].map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className="relative text-xs font-medium text-gray-400 hover:text-white transition px-1 group"
+              >
+                {item.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#00D1C1] transition-all group-hover:w-full" />
+              </a>
+            ))}
+          </nav>
+        </div>
+      </motion.header>
 
-      {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center px-6">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
-
-          {/* Badge */}
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-x-hidden pt-20">
+        {/* Main Content Container */}
+        <div className="flex-1 flex flex-col items-center justify-center max-w-4xl mx-auto text-center space-y-6 relative z-10">
+          
+          {/* Availability Badge */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -129,7 +127,7 @@ export default function App() {
             <span className="text-xs text-gray-300">Available for new projects</span>
           </motion.div>
 
-          {/* Title */}
+          {/* Title & Typing Animation */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -137,32 +135,28 @@ export default function App() {
             className="space-y-3"
           >
             <motion.h1
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.1 }}
-  className="text-5xl md:text-6xl font-black tracking-tight"
-  style={{
-    background: "linear-gradient(90deg, #00D1C1, #8B5CF6, #00D1C1)",
-    backgroundSize: "200% auto",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    animation: "gradientMove 6s linear infinite",
-  }}
->
-  Yahya Arqam
-</motion.h1>
+              className="text-5xl md:text-7xl font-black tracking-tight"
+              style={{
+                background: "linear-gradient(90deg, #00D1C1, #8B5CF6, #00D1C1)",
+                backgroundSize: "200% auto",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                animation: "gradientMove 6s linear infinite",
+              }}
+            >
+              Yahya Arqam
+            </motion.h1>
 
-<style>
-{`
-@keyframes gradientMove {
-  0% { background-position: 0% center; }
-  100% { background-position: 200% center; }
-}
-`}
-</style>
+            <style>
+              {`
+              @keyframes gradientMove {
+                0% { background-position: 0% center; }
+                100% { background-position: 200% center; }
+              }
+              `}
+            </style>
 
-            {/* Typing Animation */}
-            <div className="text-xl md:text-2xl min-h-[36px]">
+            <div className="text-xl md:text-2xl min-h-[36px] font-mono text-gray-300">
               <TypingAnimation />
             </div>
           </motion.div>
@@ -172,13 +166,13 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-base text-gray-400 max-w-2xl mx-auto"
+            className="text-base text-gray-400 max-w-2xl mx-auto leading-relaxed"
           >
             4th semester BSCS student building intelligent systems — from React frontends
             to Python backends. Learning AI/ML and modern web technologies.
           </motion.p>
 
-          {/* Buttons */}
+          {/* Call to Actions */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -186,92 +180,100 @@ export default function App() {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
           >
             <a
-              href="#projects"
-              className="px-8 py-3 bg-[#00D1C1] text-black font-bold text-sm rounded-lg hover:bg-[#00E5D3] transition"
+              href="#Projects"
+              className="px-8 py-3 bg-[#00D1C1] text-black font-bold text-sm rounded-lg hover:shadow-[0_0_20px_rgba(0,209,193,0.3)] transition-all hover:scale-105"
             >
               View Projects
             </a>
             <a
-              href="#contact"
-              className="px-8 py-3 border border-white/20 font-bold text-sm rounded-lg hover:bg-white/5 transition"
+              href="#Contact"
+              className="px-8 py-3 border border-white/20 font-bold text-sm rounded-lg hover:bg-white/5 transition-all"
             >
               Get in Touch
             </a>
           </motion.div>
+        </div>
 
-          {/* Scroll Indicator */}
+        {/* Scroll Indicator - FIXED: Positioned outside the main flex container to prevent overlap */}
+        <div className="h-24 flex items-center justify-center w-full relative z-10">
           <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="absolute bottom-12 left-1/2 -translate-x-1/2"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="flex flex-col items-center gap-3"
           >
-            <p className="text-xs text-gray-500 mb-2">SCROLL</p>
-            <div className="text-gray-500 text-center">↓</div>
+            <span className="text-[10px] text-gray-500 uppercase tracking-[0.4em] font-bold">Scroll</span>
+            <div className="w-[1px] h-10 bg-gradient-to-b from-[#00D1C1] to-transparent" />
           </motion.div>
         </div>
       </section>
 
-      {/* Stats Counter - Right after Hero */}
+      {/* Stats Section */}
       <StatsCounter />
 
-      {/* About - Terminal */}
-      <section id="About" className="py-24 px-6 md:px-12 border-t border-white/10">
+      {/* About Section - TERMINAL THEME */}
+      <section id="About" className="py-32 px-6 md:px-12 border-t border-white/10">
         <div className="max-w-5xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl font-black mb-12 tracking-tight"
+            className="text-4xl font-black mb-16 tracking-tight"
           >
             ABOUT<span className="text-[#00D1C1]">_</span>
           </motion.h2>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="rounded-lg border border-white/10 bg-black/50 overflow-hidden"
+            className="rounded-xl border border-white/10 bg-black/50 overflow-hidden shadow-2xl"
           >
-            {/* Terminal Header */}
-            <div className="flex gap-2 px-4 py-3 bg-white/5 border-b border-white/10">
-              <div className="w-3 h-3 rounded-full bg-red-500" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500" />
-              <div className="w-3 h-3 rounded-full bg-green-500" />
-              <span className="text-xs text-gray-500 font-mono ml-4">terminal</span>
+            {/* Terminal Bar */}
+            <div className="flex items-center justify-between px-4 py-3 bg-white/5 border-b border-white/10">
+              <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
+                <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+                <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
+              </div>
+              <span className="text-[10px] text-gray-500 font-mono tracking-widest">BASH</span>
+              <div className="w-12" />
             </div>
 
             {/* Terminal Content */}
-            <div className="p-6 font-mono text-sm text-gray-300 space-y-3">
-              <div>
-                <span className="text-[#00D1C1]">$</span> whoami
-              </div>
-              <div className="pl-4 text-gray-400">
-                Yahya Arqam — 4th Semester BSCS Student, Pakistan
-              </div>
-
-              <div className="pt-2">
-                <span className="text-[#00D1C1]">$</span> cat skills.txt
-              </div>
-              <div className="pl-4 text-gray-400 space-y-1">
-                <div>→ React, JavaScript, Tailwind CSS</div>
-                <div>→ Python, FastAPI (learning)</div>
-                <div>→ AI/ML Integration (learning)</div>
-                <div>→ Git, GitHub, Vite, Framer Motion</div>
+            <div className="p-8 font-mono text-sm sm:text-base text-gray-300 space-y-6">
+              <div className="space-y-2">
+                <div className="flex gap-2">
+                  <span className="text-[#00D1C1]">➜</span>
+                  <span className="text-[#8B5CF6]">~</span>
+                  <span className="text-white">whoami</span>
+                </div>
+                <div className="pl-6 text-gray-400 leading-relaxed">
+                  Yahya Arqam. A developer focused on creating fast, accessible, and 
+                  intelligent web experiences using modern engineering practices.
+                </div>
               </div>
 
-              <div className="pt-2">
-                <span className="text-[#00D1C1]">$</span> cat philosophy.txt
-              </div>
-              <div className="pl-4 text-gray-400">
-                "Learn by building. Ship real projects. Stay curious about AI."
+              <div className="space-y-2">
+                <div className="flex gap-2">
+                  <span className="text-[#00D1C1]">➜</span>
+                  <span className="text-[#8B5CF6]">~</span>
+                  <span className="text-white">ls skills/</span>
+                </div>
+                <div className="pl-6 grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-400">
+                  <div>• frontend/react-nextjs</div>
+                  <div>• backend/python-fastapi</div>
+                  <div>• tools/git-docker</div>
+                  <div>• styling/tailwind-framer</div>
+                </div>
               </div>
 
-              <div className="pt-2 flex items-center gap-1">
-                <span className="text-[#00D1C1]">$</span>
+              <div className="flex items-center gap-2 pt-4">
+                <span className="text-[#00D1C1]">➜</span>
+                <span className="text-[#8B5CF6]">~</span>
                 <motion.span
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{ duration: 1, repeat: Infinity }}
-                  className="inline-block w-2 h-4 bg-[#00D1C1] ml-1"
+                  animate={{ opacity: [1, 0] }}
+                  transition={{ duration: 0.8, repeat: Infinity }}
+                  className="w-2.5 h-5 bg-[#00D1C1]"
                 />
               </div>
             </div>
@@ -279,46 +281,50 @@ export default function App() {
         </div>
       </section>
 
-      {/* Projects - Using ProjectFilter */}
-      <section id="Projects" className="py-24 px-6 md:px-12 border-t border-white/10">
+      {/* Projects Section */}
+      <section id="Projects" className="py-32 px-6 md:px-12 border-t border-white/10">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-black mb-4 tracking-tight">
-              PROJECTS<span className="text-[#8B5CF6]">_</span>
-            </h2>
-            <p className="text-xs text-gray-500 uppercase mb-8 font-mono tracking-widest">
-              Selected Work
-            </p>
+            <div className="mb-16">
+              <h2 className="text-4xl font-black tracking-tight mb-4 text-white">
+                PROJECTS<span className="text-[#8B5CF6]">_</span>
+              </h2>
+              <p className="text-gray-500 font-mono text-xs uppercase tracking-[0.2em]">
+                Selected Digital Architecture
+              </p>
+            </div>
+            
             <ProjectFilter />
           </motion.div>
         </div>
       </section>
 
-      {/* Skills */}
-      <section id="Skills" className="py-24 px-6 md:px-12 border-t border-white/10">
-        <div className="max-w-5xl mx-auto">
+      {/* Skills Section */}
+      <section id="Skills" className="py-32 px-6 md:px-12 border-t border-white/10 bg-white/[0.01]">
+        <div className="max-w-5xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-black mb-12 tracking-tight">
-              SKILLS<span className="text-[#00D1C1]">_</span>
+            <h2 className="text-4xl font-black mb-16 tracking-tight">
+              TECH STACK<span className="text-[#00D1C1]">_</span>
             </h2>
             <Skills />
           </motion.div>
         </div>
       </section>
 
-      {/* Contact */}
+      {/* Contact Section */}
       <section id="Contact" className="border-t border-white/10">
         <Contact />
       </section>
 
+      {/* Footer Component */}
       <Footer />
     </div>
   );
